@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class User extends Authenticatable
+{
+    use HasFactory;
+    protected $table = 'user';
+    protected $guarded = ['id'];
+    public $timestamps = false;
+
+    public function alluser() {
+        return User::select('*')->where('username', "!=", 'diskominfo')->get();
+    }
+}
